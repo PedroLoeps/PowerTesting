@@ -86,12 +86,12 @@ void app_main(void)
             int m_sent = 0;
 
             ESP_LOGI(TAG, "Sending Messages");
-            //while((now.tv_sec - start.tv_sec) < 20)
-            //{
+            while((now.tv_sec - start.tv_sec) < 20)
+            {
                 mqtt_send_data(LOG_TOPIC, log_message);
                 m_sent++;
                 gettimeofday(&now, NULL);
-            //}
+            }
             int i = (now.tv_sec - start.tv_sec) * 1000000 + (now.tv_usec - start.tv_usec);
             ESP_LOGI(TAG, "Messages Done");
             ESP_LOGI(TAG, "%d Messages sent", m_sent);
@@ -120,7 +120,7 @@ void app_main(void)
                 vTaskDelay(10 / portTICK_PERIOD_MS);
             }
             ESP_LOGI(TAG, "Bluetooth Terminated");
-            //esp_blufi_host_deinit(); //Da erro
+            //esp_blufi_host_deinit();
     }
 
     const int wakeup_time_sec = 20;
@@ -128,7 +128,7 @@ void app_main(void)
     esp_sleep_enable_timer_wakeup(wakeup_time_sec * 1000000);
 
     esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_OFF);
-    // esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_SLOW_MEM, ESP_PD_OPTION_OFF);
+    //esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_SLOW_MEM, ESP_PD_OPTION_OFF);
 
 
 
